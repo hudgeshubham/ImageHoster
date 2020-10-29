@@ -44,10 +44,9 @@ public class UserController {
         //Check for password strength before registering the user successfully
         if (isWeakPassword(user.getPassword())) {
             model.addAttribute("User", user);
-
             String error = "Password must contain atleast 1 alphabet, 1 number & 1 special character";
             model.addAttribute("passwordTypeError", error);
-            return "users/registration.html";
+            return "users/registration";
         }
         userService.registerUser(user);
         return "users/login";
@@ -98,17 +97,18 @@ public class UserController {
 
         if (password.length() >= 3) {
             //if it contains one digit, add 1 to total score
-            if (password.matches("(?=.[0-9])."))
+            if (password.matches("(?=.*[0-9]).*"))
                 iPasswordScore += 1;
 
             //if it contains one letter, add 1 to total score
-            if (password.matches("(?=.[A-Za-z])."))
+            if (password.matches("(?=.*[A-Za-z]).*"))
                 iPasswordScore += 1;
 
             //if it contains one special character, add 1 to total score
-            if (password.matches("(?=.[~!@#$%^&()_-]).*"))
+            if (password.matches("(?=.*[~!@#$%^&*()_-]).*"))
                 iPasswordScore += 1;
         }
         return iPasswordScore;
     }
+
 }

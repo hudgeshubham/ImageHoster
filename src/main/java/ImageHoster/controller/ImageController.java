@@ -168,6 +168,7 @@ public class ImageController {
             String error = "Only the owner of the image can delete the image";
             model.addAttribute("deleteError", error);
             model.addAttribute("comments", currentImage.getComments());
+
             return "images/image";
         }
         imageService.deleteImage(imageId);
