@@ -53,7 +53,7 @@ public class ImageController {
         model.addAttribute("image", image);
         model.addAttribute("tags", image.getTags());
         model.addAttribute("comments", image.getComments());
-        return "/images/image";
+        return "images/image";
     }
 
     //This controller method is called when the request pattern is of type 'images/upload'
